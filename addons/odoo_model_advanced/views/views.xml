@@ -9,7 +9,7 @@
                 <tree string="Coche">
                     <field name="name"/>
                     <field name="cv"/>
-                    <field name="fuel_litres"/>
+                    <field name="liters"/>
                     <!--<button name="method" string="Acción" class="oe_highlight" type="object"/>-->
                 </tree>
             </field>
@@ -17,19 +17,19 @@
 
         <!-- Acción para abrir vistas de los modelos -->
         <record model="ir.actions.act_window" id="odoo_model_advanced_car">
-            <field name="name">Coche</field>
+            <field name="name">Car</field>
             <field name="res_model">odoo_model_advanced.car</field>
             <field name="view_mode">tree,form</field>
         </record>
 
         <!-- Menú item superior -->
-        <menuitem name="Modelo avanzado" id="odoo_model_advanced.menu_root"/>
+        <menuitem name="Advanced model" id="odoo_model_advanced.menu_root"/>
 
         <!-- Categorías de menú -->
-        <menuitem name="Modelos" id="odoo_model_advanced.menu_1" parent="odoo_model_advanced.menu_root"/>
+        <menuitem name="Models" id="odoo_model_advanced.menu_1" parent="odoo_model_advanced.menu_root"/>
 
         <!-- Acciones del menú -->
-        <menuitem name="Coche" id="odoo_model_advanced.menu_car" parent="odoo_model_advanced.menu_1"
+        <menuitem name="Car" id="odoo_model_advanced.menu_car" parent="odoo_model_advanced.menu_1"
                   action="odoo_model_advanced_car"/>
 
     </data>
