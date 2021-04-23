@@ -10,7 +10,7 @@
                     <field name="name"/>
                     <field name="cv"/>
                     <field name="liters"/>
-                    <button name="create_cars" string="Create car" class="oe_highlight" type="object"/>
+                    <button name="recordset_operations" string="Action" class="oe_highlight" type="object"/>
                 </tree>
             </field>
         </record>
