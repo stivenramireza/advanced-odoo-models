@@ -8,6 +8,7 @@ logger.basicConfig(level=logger.INFO)
 class Car(models.Model):
     _name = 'odoo_model_advanced.car'
     _description = 'Car'
+    # _inherit = 'base.active'
     # _inherits = {'res.partner': 'partner_id'}
     # _parent_store = True
     # _parent_name = 'parent_id'
@@ -99,7 +100,7 @@ class Car(models.Model):
         sorted_cars = cars.sorted(key=lambda c: c.cv, reverse=True)
         self.print_cars(sorted_cars)
 
-    def get_average_cv(self):
+    def get_average_cv(self) -> None:
         grouped_cars = self.read_group([('cv', '>', '85')], ['cv:avg'], ['group_id'])
         logger.info(f'Grouped cars: {grouped_cars}')
 
@@ -119,11 +120,15 @@ class Car(models.Model):
         for record in recordset:
             logger.info(f'{record.name} {record.cv} {record.liters}')
 
-    def get_average_cv_sql(self):
+    def get_average_cv_sql(self) -> None:
         sql = 'SELECT AVG(car.cv) FROM odoo_model_advanced_car AS car'
         self.env.cr.execute(sql)
         result = self.env.cr.fetchall()
         logger.info(result)
+
+    def validate(self) -> None:
+        if True:
+            raise exceptions.UserError('You must enter the license plate')
 
 
 class CarExtended(models.Model):
@@ -137,3 +142,16 @@ class CarCopy(models.Model):
     _inherit = 'odoo_model_advanced.car'
 
     extended_field = fields.Char('Extra field', default='extra field')
+
+
+class UserExtended(models.Model):
+    _inherit = 'res.users'
+
+    def name_get(self) -> list:
+        return [(user.id, '%s (%s)' % (user.name, user.phone)) for user in self]
+
+
+class BaseActive(models.AbstractModel):
+    _name = 'base.active'
+
+    active = fields.Boolean(default=True)

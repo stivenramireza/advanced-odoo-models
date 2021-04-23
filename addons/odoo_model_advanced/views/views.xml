@@ -10,7 +10,7 @@
                     <field name="name"/>
                     <field name="cv"/>
                     <field name="liters"/>
-                    <button name="get_average_cv_sql" string="Action" class="oe_highlight" type="object"/>
+                    <button name="validate" string="Action" class="oe_highlight" type="object"/>
                 </tree>
             </field>
         </record>
