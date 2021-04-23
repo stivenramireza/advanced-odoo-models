@@ -110,3 +110,9 @@ class Car(models.Model):
     def print_recordset(self, recordset: list) -> None:
         for record in recordset:
             logger.info(f'{record.name} {record.cv} {record.liters}')
+
+    def get_average_cv_sql(self):
+        sql = 'SELECT AVG(car.cv) FROM odoo_model_advanced_car AS car'
+        self.env.cr.execute(sql)
+        result = self.env.cr.fetchall()
+        logger.info(result)
