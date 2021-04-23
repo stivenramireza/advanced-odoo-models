@@ -9,9 +9,9 @@ class Car(models.Model):
     _name = 'odoo_model_advanced.car'
     _description = 'Car'
     # _inherits = {'res.partner': 'partner_id'}
-    _parent_store = True
-    _parent_name = 'parent_id'
-    parent_path = fields.Char(index=True)
+    # _parent_store = True
+    # _parent_name = 'parent_id'
+    # parent_path = fields.Char(index=True)
 
     name = fields.Char(string='Model')
     license_plate = fields.Char(string='License plate')
@@ -20,10 +20,11 @@ class Car(models.Model):
     liters = fields.Float(string='Liters')
     under_fuel = fields.Boolean(string='Need to refuel', compute='_compute_under_fuel')
     customer = fields.Many2one(comodel_name='res.users', string='Customer')
+    customer_phone = fields.Char(string='Phone', related='customer.phone', readonly=True)
     group_id = fields.Integer(string='Group')
     # partner_id = fields.Many2one(comodel_name='res.partner', ondelete='cascade', string='Partner')
-    parent_id = fields.Many2one(comodel_name='odoo_model_advanced.car', string='Parent car', ondelete='restrict', index=True)
-    child_ids = fields.One2many(comodel_name='odoo_model_advanced.car', string='Children cars')
+    # parent_id = fields.Many2one(comodel_name='odoo_model_advanced.car', string='Parent car', ondelete='restrict', index=True)
+    # child_ids = fields.One2many(comodel_name='odoo_model_advanced.car', string='Children cars')
 
     _sql_constraints = [
         ('license_plate_unique', 'UNIQUE(license_plate)', 'License plate must be unique')
